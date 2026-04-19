@@ -8,9 +8,17 @@ back_menu = ReplyKeyboardMarkup(
 )
 
 main_menu = ReplyKeyboardMarkup(
-        keyboard=[
-            [KeyboardButton(text="AI bilan suhbat")],
-            [KeyboardButton(text="PDF qilish")]
-        ],
-        resize_keyboard=True
-    )
+    keyboard=[
+        [KeyboardButton(text="AI bilan suhbat")],
+        [KeyboardButton(text="PDF qilish")]
+    ],
+    resize_keyboard=True
+)
+
+pdf_menu = ReplyKeyboardMarkup(
+    keyboard=[
+        [KeyboardButton(text="Tayyor ✅")],
+        [KeyboardButton(text="🔝Bosh sahifa")]
+    ],
+    resize_keyboard=True
+)
