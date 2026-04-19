@@ -32,7 +32,7 @@ async def handle(request):
     return web.Response(text="ok")
 
 app = web.Application()
-app.router.add_post("/webhook", handle)
+app.router.add_post("/", handle)
 
 if __name__ == "__main__":
     web.run_app(app, port=5000)
