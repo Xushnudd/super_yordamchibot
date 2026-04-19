@@ -4,6 +4,8 @@ from states.states import BotStates
 
 from keyboards.keyboards import back_menu
 
+from utils.groqChat import groqChat
+
 router = Router()
 
 @router.message(F.text == "AI bilan suhbat")
@@ -13,4 +15,4 @@ async def message(m: types.Message, state: FSMContext):
 
 @router.message(BotStates.aiMode)
 async def handleAiChat(m: types.Message):
-    await m.answer(f"AI javobi: Siz {m.text} dedingiz", reply_markup=back_menu)
+    await m.answer(f"AI javobi:\n\n{groqChat(m.text)}", parse_mode="html", reply_markup=back_menu)
