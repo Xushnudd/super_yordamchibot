@@ -2,7 +2,7 @@ from aiogram import Router, types, F
 from aiogram.fsm.context import FSMContext
 from states.states import BotStates
 
-from keyboards.keyboards import main_menu, back_menu
+from keyboards.keyboards import back_menu
 
 router = Router()
 
