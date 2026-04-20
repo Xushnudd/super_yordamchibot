@@ -2,7 +2,7 @@ import os
 import asyncio
 from dotenv import load_dotenv
 
-from aiohttp import web
+from fastapi import FastAPI, Request
 
 from aiogram import Bot, Dispatcher
 from aiogram.types import Update
@@ -14,25 +14,16 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
+app = FastAPI()
 
 dp.include_router(start.router)
 dp.include_router(aiChat.router)
 dp.include_router(pdfCreate.router)
 
-# async def main():
-#     await dp.start_polling(bot)
-    
-# if __name__ == "__main__":
-#     asyncio.run(main())
-
-async def handle(request):
+@app.post("/bots/super_yordamchibot/")
+async def webhook(request: Request):
     data = await request.json()
-    update = Update.model_validate(data)
+    update = Update(**data)
+    
     await dp.feed_update(bot, update)
-    return web.Response(text="ok")
-
-app = web.Application()
-app.router.add_post("/", handle)
-
-if __name__ == "__main__":
-    web.run_app(app, port=5000)
+    return {"ok": True}
